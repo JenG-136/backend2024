@@ -1,8 +1,8 @@
 const express = require("express");
 
 const app = express();
-app.get("/usuarios", (req,res) =>{
-    const usuarios=[
+
+const usuarios=[
 
     {
         id:1,
@@ -18,8 +18,18 @@ app.get("/usuarios", (req,res) =>{
 
     }
     ]
-    res.status(200).send(usuarios); // elemento para dar respuesta el get
+
+app.get("/usuarios", (req,res) =>{
+    res.status(200).send({usuarios}); // elemento para dar respuesta el get
 }); //GET para obtener informacion 
+
+app.get("/usuarios/:id", (req,res) =>{
+    const {id}= req.params;
+    //console.log(params);
+    const usuario = usuarios.find((usuario) => usuario.id === +id);
+
+    res.status(200).send(usuario);
+});
 
 app.listen(3000,() =>{
     console.log("Servidor corriendo en https://localhost:3000");
