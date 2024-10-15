@@ -5,11 +5,10 @@ GET http://localhost:3000/usuarios/5
 
 ###
 POST http://localhost:3000/usuarios/
-
 Content-Type: application/json
 
 {
-    "nombre": "yene",
-    "apellido": "Raman",
-    "email": "Yenigarcia226@gmail.com"
+    "nombre": "Yeni",
+    "apellido": "Garcia",
+    "email": "Yenigarcia1515@gmail.com"
 }
