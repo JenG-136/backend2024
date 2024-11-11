@@ -1,5 +1,6 @@
 const express = require('express');
 const usersRoutes = require('./routes/users');
+const staffRoutes = require('./routes/staff'); // rita para staff
 
 class Server {
     constructor(){ //es un metodo que se ejecuta de manera automaticamente para crear o ejeciutar un objeto 
@@ -23,6 +24,7 @@ this.app.use(express.json());
             res.send('Hello world!');
         });*/
         this.app.use('/users', usersRoutes);//especificar la ruta que se a invpcar al objeto jsjsj
+        this.app.use('/staff', staffRoutes);
     }
 
     start(){ //metodo para llamar listen para que no sea automaticamente 

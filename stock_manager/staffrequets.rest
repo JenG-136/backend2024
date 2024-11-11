@@ -1,0 +1,46 @@
+GET http://localhost:3000/staff/
+//mostrar todos los usuarios
+
+###
+GET http://localhost:3000/staff/2/
+//done miestra un usuario dependiendo del id q
+
+###
+POST http://localhost:3000/staff/
+Content-Type: application/json
+
+{
+  "first_name": "yen",
+  "last_name": "lore",
+  "birth_date": "2002-07-28",
+  "gender": "F",
+  "phone_number": "2875648989",
+  "email": "yenyen@gmail.com",
+  "address": "tux",
+  "user_id": 2
+  //para agregar un usuario
+}
+
+
+###
+PUT http://localhost:3000/staff/1
+Content-Type: application/json
+
+{
+   "first_name": "Yeni",
+  "last_name": "Ramon G",
+  "birth_date": "2003-10-15",
+  "gender": "F",
+  "phone_number": "2875555555",
+  "email": "yeni1528@example.com",
+  "address": "TUUUUU",
+  "user_id": 1
+  //para actualizar el usuario
+}
+
+
+###
+DELETE http://localhost:3000/staff/2/ 
+//para eliminar 
+
+

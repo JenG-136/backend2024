@@ -10,23 +10,27 @@ POST http://localhost:3000/users/
 Content-Type: application/json
 
 {
-  "name": "yenie rg" 
+  "username": "Jennifer",
+  "password": "Martinez",
+  "email": "JEn2802@gmail.com"
   //para agregar un usuario
 }
 
 
 ###
-PUT http://localhost:3000/users/2
+PUT http://localhost:3000/users/6
 Content-Type: application/json
 
 {
-  "name": "Pao" 
+  "username": "Fer",
+  "password": "jen123",
+  "email": "fer2802@gmail.com"
   //para actualizar el usuario
 }
 
 
 ###
-DELETE http://localhost:3000/users/5/ 
+DELETE http://localhost:3000/users/1/ 
 //para eliminar 
 
 
