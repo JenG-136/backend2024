@@ -2,7 +2,7 @@ GET http://localhost:3000/users/
 //mostrar todos los usuarios
 
 ###
-GET http://localhost:3000/users/3/
+GET http://localhost:3000/users/6/
 //done miestra un usuario dependiendo del id q
 
 ###
@@ -10,9 +10,9 @@ POST http://localhost:3000/users/
 Content-Type: application/json
 
 {
-  "username": "Jennifer",
-  "password": "Martinez",
-  "email": "JEn2802@gmail.com"
+  "username": "Mash",
+  "password": "mashleee",
+  "email": "mmm1548@gmail.com"
   //para agregar un usuario
 }
 
@@ -33,4 +33,32 @@ Content-Type: application/json
 DELETE http://localhost:3000/users/1/ 
 //para eliminar 
 
+###
+POST http://localhost:3000/users/
+Content-Type: application/json
 
+{
+  "username": "sol",
+  "password": "1245",
+  "email": "sol.48@gmail.com"
+  //para decifrar la contraseña
+}
+
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "username": "sol",
+  "password": "1245"
+  //para iniciar el login
+}
+
+###
+PUT http://localhost:3000/users/6/password
+Content-Type: application/json
+
+{
+  "newPassword": "123456"
+}

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAllUsers, getUserById, addUser, updateUser, deleteUser } = require('../controllers/users');
+const { getAllUsers, getUserById, addUser, loginUser, updatePassword, updateUser, deleteUser } = require('../controllers/users');
 // se va a imporatar ek controlador 
 
 const router = Router();
@@ -14,6 +14,12 @@ router.get('/:id', getUserById);
 
 // Ruta para agregar un usuario
 router.post('/', addUser);
+
+//para iniciar sesion 
+router.post('/login', loginUser); 
+
+//para actualizar la contrseña dekl usuario
+router.put('/:id/password', updatePassword);
 
 // Ruta para actualizar un usuario
 router.put('/:id', updateUser);

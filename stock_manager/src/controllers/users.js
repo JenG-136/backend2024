@@ -1,6 +1,9 @@
 const { request, response } = require('express');
+const bcrypt = require('bcrypt');
 const pool = require('../db/connection');
 const {usersQueries} = require('../models/users');
+
+const saltRounds=10; 
 
 //const users = [ //crear arreglo
   //{ id: 1, name: 'Jeni GR' }, //los registro que se va a almacenar
@@ -66,6 +69,7 @@ const addUser = async (req = request, res = response) => {
     return;
   }
 
+
 let conn;  
   try{
     conn = await pool.getConnection();
@@ -76,11 +80,15 @@ let conn;
       return;
     }
 
-    const newUser = await conn.query(usersQueries.create, [username, password, email]);
+    const hashPassword = await bcrypt.hash(password, saltRounds);
+
+    const newUser = await conn.query(usersQueries.create, [username, hashPassword, email]);
     if(newUser.affectedRows === 0){
       res.status(500).send('User could not be created');
       return;
     }
+
+  
     //console.log(newUser);
 
     res.status(201).send("user created succesfully"); 
@@ -92,6 +100,39 @@ let conn;
     if (conn) conn.end();
   }
 };
+
+const loginUser = async (req = request, res = response) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.status(400).send('Username and password are mandatory!');
+    return;
+  }
+
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    const user = await conn.query(usersQueries.getByUsername, [username]);
+
+    if (user.length === 0) {
+      res.status(404).send('Bad username or password');
+      return;
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user[0].password); // Cambié bcript a bcrypt
+    if (!passwordMatch) {
+      res.status(403).send('Bad username or password');
+      return;
+    }
+
+    res.send('Logged in!');
+  } catch (error) {
+    console.error(error); // Agregado para depuración
+    res.status(500).send(error);
+  } finally {
+    if (conn) conn.end();
+  }
+};
+
 
 // Actualizar un usuario existente (actualixar los datos de los usuario existente mediante el ID)
 const updateUser = async (req = request, res = response) => {
@@ -119,6 +160,7 @@ const updateUser = async (req = request, res = response) => {
     }
 
     // Ejecutar la consulta de actualización
+    
     const updatedUser = await conn.query(usersQueries.update, [username, password, email, +id]);
 
     if (updatedUser.affectedRows === 0) {
@@ -133,6 +175,53 @@ const updateUser = async (req = request, res = response) => {
     if (conn) conn.end();
   }
 };
+
+
+// para actualizar la contraseña de un usuario
+const updatePassword = async (req = request, res = response) => {
+  const { id } = req.params; // Obtener el ID del usuario desde los parámetros de la solicitud
+  const { newPassword } = req.body; // Obtener la nueva contraseña desde el cuerpo de la solicitud
+
+  // Validar los datos de entrada
+  if (isNaN(id)) {
+    res.status(400).send('Invalid ID');
+    return;
+  }
+
+  if (!newPassword) {
+    res.status(400).send('New password is required');
+    return;
+  }
+
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    const user = await conn.query(usersQueries.getById, [+id]);
+
+    if (user.length === 0) {
+      res.status(404).send('User not found');
+      return;
+    }
+
+    // Hashear la nueva contraseña
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    // Actualizar la contraseña
+    const result = await conn.query(usersQueries.updatePassword, [hashedPassword, +id]);
+
+    if (result.affectedRows === 0) {
+      res.status(500).send('Password could not be updated');
+      return;
+    }
+
+    res.send('Password updated successfully');
+  } catch (error) {
+    res.status(500).send(error.message);
+  } finally {
+    if (conn) conn.end();
+  }
+};
+
 
 // Eliminar un usuario
 const deleteUser = async (req = request, res = response) => {
@@ -169,4 +258,4 @@ if(conn) conn.end();
   
 };
 
-module.exports = { getAllUsers, getUserById, addUser, updateUser, deleteUser }; 
+module.exports = { getAllUsers, getUserById, addUser, loginUser, updatePassword, updateUser, deleteUser }; 

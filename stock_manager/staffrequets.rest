@@ -2,7 +2,7 @@ GET http://localhost:3000/staff/
 //mostrar todos los usuarios
 
 ###
-GET http://localhost:3000/staff/2/
+GET http://localhost:3000/staff/3/
 //done miestra un usuario dependiendo del id q
 
 ###
