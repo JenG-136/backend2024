@@ -1,0 +1,32 @@
+//Obtener todos los proveedores de productos
+GET http://localhost:3000/products_suppliers
+
+//Obtener un proveedor de producto por ID
+###
+GET http://localhost:3000/products_suppliers/1
+
+//crear un nuevo proveedor de producto
+###
+POST http://localhost:3000/products_suppliers
+Content-Type: application/json
+
+{
+    "product_id": 2,
+    "supplier_rfc": "78177756",
+    "notes": "Proveedor de tostada"
+}
+
+//Actualizar un proveedor de producto
+###
+PUT http://localhost:3000/products_suppliers/2
+Content-Type: application/json
+
+{
+    "product_id": 3,
+    "supplier_rfc": "78964756",
+    "notes": "Proveedor secundario actualizado"
+}
+
+//Eliminar un proveedor de producto
+###
+DELETE http://localhost:3000/products_suppliers/3

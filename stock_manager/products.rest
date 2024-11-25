@@ -1,0 +1,38 @@
+GET http://localhost:3000/products/ 
+//para obtener todos los productos
+
+###
+GET http://localhost:3000/products/3
+//se obtiene un producto por id
+
+###
+POST http://localhost:3000/products/
+Content-Type: application/json
+
+{
+  "product": "tablet",
+  "description": "Tablet 10 pulgadas Android 11 Tablet 2022",
+  "stock": 10,
+  "measurement_unit": "piece",
+  "price": 100.90,
+  "discount": 5.5
+}
+// para agregar un nuevo producto 
+
+###
+PUT http://localhost:3000/products/3
+Content-Type: application/json
+
+{
+  "product": "agua",
+  "description": "agua fresca",
+  "stock": 8,
+  "measurement_unit": "liters",
+  "price": 10.00,
+  "discount": 3.0
+}
+//para actualizar 
+
+###
+DELETE http://localhost:3000/products/5
+//para eliminar

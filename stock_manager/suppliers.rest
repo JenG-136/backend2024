@@ -1,0 +1,38 @@
+###
+GET http://localhost:3000/suppliers/
+
+
+###
+GET http://localhost:3000/suppliers/23439099
+
+###
+POST http://localhost:3000/suppliers/
+Content-Type: application/json
+
+{
+    "rfc": "23439099",
+    "name": "Proveedor 2",
+    "description": "Proveedor de carros",
+    "phone_number": "2346789089",
+    "email": "proveedor2@gmail.com",
+    "address": "Oaxaca"
+}
+//para agregar
+
+###
+PUT http://localhost:3000/suppliers/RFC23112024
+Content-Type: application/json
+
+{
+    "name": "Proveedor 3",
+    "description": "Proveedor de productos lacteos",
+    "phone_number": "2831450204",
+    "email": "proveedor3@gmail.com",
+    "address": "Tuxtepec, Oaxaca"
+}
+
+//para actualizar
+
+###
+DELETE http://localhost:3000/suppliers/MANJ022803J0
+//para eliminar
