@@ -1,1 +1,39 @@
-GET http://localhost:3000/
+GET http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNfYWRtaW4iOjEsImlhdCI6MTczNDAyMTkyMSwiZXhwIjoxNzM0MDIyMjIxfQ.6q8zUDsHHtKILCrez5zNvzBkUcYaFufUalA4nMry7fc
+//paraver todos los usuarios
+
+###
+GET http://localhost:3000/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNfYWRtaW4iOjEsImlhdCI6MTczNDAyMTkyMSwiZXhwIjoxNzM0MDIyMjIxfQ.6q8zUDsHHtKILCrez5zNvzBkUcYaFufUalA4nMry7fc
+//para mostrar el id 
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNfYWRtaW4iOjEsImlhdCI6MTczNDAyMjgzNSwiZXhwIjoxNzM0MDIzMTM1fQ.3f-n_b-6lYv9hbT9hAT4oQ_HNvwIl6u2GOCNjWXdlyA
+
+{
+  "first_name": "luluuu",
+  "last_name": "JR",
+  "email": "lulis@gmail.com",
+  "password": "lalala11"
+}
+
+//para crear el usuaario
+
+###
+PUT http://localhost:3000/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNfYWRtaW4iOjEsImlhdCI6MTczNDAyMTU4MSwiZXhwIjoxNzM0MDIxODgxfQ.0_3K0KY5VwWtOTO1tiIYuf2s1IC9blMxmwXFvt6bBtU
+
+{
+  "first_name": "sole",
+  "last_name": "lore",
+  "email": "solsol@gmail.com"
+  
+}
+
+###
+DELETE http://localhost:3000/users/1

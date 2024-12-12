@@ -1,0 +1,19 @@
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+   "email": "yenyen@gmail.com",
+   "password": "garcia123"
+}
+
+//{
+  //  "email": "sakuuun@gmail.com",
+  //  "password": "saaku"
+//}
+
+
+
+###
+GET http://localhost:3000/users/protected
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaXNfYWRtaW4iOjEsImlhdCI6MTczNDAyMjgzNSwiZXhwIjoxNzM0MDIzMTM1fQ.3f-n_b-6lYv9hbT9hAT4oQ_HNvwIl6u2GOCNjWXdlyA
